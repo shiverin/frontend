@@ -129,7 +129,8 @@ for (let i = 1; ; ++i) {
 }
 
 const featureFlags = {
-  enableSicpChatbot: isTrue(process.env.REACT_APP_FEATURE_ENABLE_SICP_CHATBOT)
+  enableSicpChatbot: isTrue(process.env.REACT_APP_FEATURE_ENABLE_SICP_CHATBOT),
+  enablePixelChatbot: isTrue(process.env.REACT_APP_FEATURE_ENABLE_PIXEL_CHATBOT)
 };
 
 export enum Links {

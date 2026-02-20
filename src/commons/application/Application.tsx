@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Outlet } from 'react-router';
+import { Outlet, useLocation } from 'react-router';
+import PixelChatbot from 'src/commons/chatbot/PixelChatbot';
 import Messages, {
   MessageType,
   MessageTypeNames,
@@ -18,6 +19,13 @@ import VscodeActions from './actions/VscodeActions';
 const Application: React.FC = () => {
   const dispatch = useDispatch();
   const { isLoggedIn } = useSession();
+  const location = useLocation();
+
+  // Show Pixel chatbot on all pages except SICP (which has Louis)
+  const showPixel =
+    isLoggedIn &&
+    Constants.featureFlags.enablePixelChatbot &&
+    !location.pathname.startsWith('/sicpjs');
 
   // Used in the mobile/PWA experience (e.g. separate handling of orientation changes on Andriod & iOS due to unique browser behaviours)
   const isMobile = /iPhone|iPad|Android/.test(navigator.userAgent);
@@ -160,6 +168,7 @@ const Application: React.FC = () => {
         <div className="Application__main">
           <Outlet />
         </div>
+        {showPixel && <PixelChatbot />}
       </div>
     </WorkspaceSettingsContext.Provider>
   );

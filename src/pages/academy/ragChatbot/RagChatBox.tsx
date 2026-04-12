@@ -160,8 +160,7 @@ const RagChatBox: React.FC<Props> = ({
 
   useEffect(() => {
     resetChat();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [resetChat]);
 
   useEffect(() => {
     scrollToBottom(chatRef);
